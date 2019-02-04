@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -91,6 +92,10 @@ public class SacrificialDagger extends Item
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
+        if (player.getHealth() <= 2){
+            player.addChatComponentMessage(new ChatComponentText("§cVocê não tem vida suficiente para usar esse item!"));
+            return stack;
+        }
     	if (this.canUseForSacrifice(stack))
         {
             player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
