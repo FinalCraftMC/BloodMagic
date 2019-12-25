@@ -90,7 +90,6 @@ processResources {
 }
 
 jar {
-    dependsOn "incrementBuildNumber"
 	classifier = ''
 	 manifest.mainAttributes(
             "Built-By": System.getProperty('user.name'),
@@ -123,19 +122,6 @@ tasks.build.dependsOn sourceJar, javadocJar, deobfJar
 
 tasks.withType(JavaCompile) { task ->
     task.options.encoding = 'UTF-8'
-}
-
-task("incrementBuildNumber") {
-	// increment build number
-	doFirst {
-		// increment
-		config.build_number = (config.build_number.toString().toInteger()) + 1
-
-		// write back to the file
-		configFile.withWriter {
-			config.toProperties().store(it, "")
-		}
-	}
 }
 
 // Uncomment this line if you want to auto-upload to CurseForge when you build. This requires you to setup curse.gradle yourself.

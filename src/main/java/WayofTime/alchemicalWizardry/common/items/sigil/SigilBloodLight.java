@@ -19,6 +19,8 @@ import WayofTime.alchemicalWizardry.common.entity.projectile.EntityBloodLightPro
 import WayofTime.alchemicalWizardry.common.items.EnergyItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 
 public class SigilBloodLight extends EnergyItems implements IHolding, ArmourUpgrade, ISigil
 {
@@ -59,6 +61,12 @@ public class SigilBloodLight extends EnergyItems implements IHolding, ArmourUpgr
         if (par3World.isRemote)
         {
             return true;
+        }
+
+        PlayerUseItemEvent.Start playerUseItemEventStart = new PlayerUseItemEvent.Start(par2EntityPlayer,par1ItemStack,0);
+        if(MinecraftForge.EVENT_BUS.post(playerUseItemEventStart))
+        {
+            return false;
         }
 
         if (par7 == 0 && par3World.isAirBlock(par4, par5 - 1, par6))
