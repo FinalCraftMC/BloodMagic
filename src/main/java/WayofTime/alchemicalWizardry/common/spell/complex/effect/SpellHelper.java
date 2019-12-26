@@ -63,6 +63,10 @@ public class SpellHelper
         return entity.worldObj.rayTraceBlocks(SpellHelper.createVec3(entity.posX, entity.posY, entity.posZ), SpellHelper.createVec3(entity2.posX, entity2.posY, entity2.posZ), false) == null;
     }
 
+    public static String getWorldNameFromEntity(Entity entity){
+        return entity.worldObj.getSaveHandler().getWorldDirectoryName();
+    }
+
     public static Vec3 createVec3(double x, double y, double z)
     {
     	return APISpellHelper.createVec3(x, y, z);

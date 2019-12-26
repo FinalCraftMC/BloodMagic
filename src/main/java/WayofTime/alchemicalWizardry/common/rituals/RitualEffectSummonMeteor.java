@@ -9,11 +9,13 @@ import WayofTime.alchemicalWizardry.api.soulNetwork.SoulNetworkHandler;
 import WayofTime.alchemicalWizardry.common.entity.projectile.EntityMeteor;
 import WayofTime.alchemicalWizardry.common.spell.complex.effect.SpellHelper;
 import WayofTime.alchemicalWizardry.common.summoning.meteor.MeteorRegistry;
+import WayofTime.alchemicalWizardry.integration.ModHookEventHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -37,15 +39,18 @@ public class RitualEffectSummonMeteor extends RitualEffect
             ritualStone.setCooldown(0);
         }
 
+        EntityPlayer entityOwner = SpellHelper.getPlayerForUsername(owner);
+        if (entityOwner == null){
+            return;
+        }
+
+        if (!SpellHelper.getWorldNameFromEntity(entityOwner).equalsIgnoreCase("Minerar")){
+            entityOwner.addChatComponentMessage(new ChatComponentText("§cVocê só pode usar esse ritual no /warp Minerar"));
+            return;
+        }
+
         if (currentEssence < this.getCostPerRefresh())
         {
-            EntityPlayer entityOwner = SpellHelper.getPlayerForUsername(owner);
-
-            if (entityOwner == null)
-            {
-                return;
-            }
-
             entityOwner.addPotionEffect(new PotionEffect(Potion.confusion.id, 80));
         } else
         {

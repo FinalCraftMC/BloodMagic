@@ -3,6 +3,7 @@ package WayofTime.alchemicalWizardry.common.items.sigil;
 import java.util.List;
 
 import WayofTime.alchemicalWizardry.api.items.interfaces.ISigil;
+import WayofTime.alchemicalWizardry.integration.ModHookEventHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -63,10 +64,8 @@ public class SigilBloodLight extends EnergyItems implements IHolding, ArmourUpgr
             return true;
         }
 
-        PlayerUseItemEvent.Start playerUseItemEventStart = new PlayerUseItemEvent.Start(par2EntityPlayer,par1ItemStack,0);
-        if(MinecraftForge.EVENT_BUS.post(playerUseItemEventStart))
-        {
-            return false;
+        if (ModHookEventHelper.cantBreak(par2EntityPlayer,par8,par9,par10)){
+            return true;
         }
 
         if (par7 == 0 && par3World.isAirBlock(par4, par5 - 1, par6))

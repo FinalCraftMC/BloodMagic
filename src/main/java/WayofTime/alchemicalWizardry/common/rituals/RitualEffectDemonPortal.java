@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Random;
 
 import WayofTime.alchemicalWizardry.AlchemicalWizardry;
+import WayofTime.alchemicalWizardry.common.spell.complex.effect.SpellHelper;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.World;
 import WayofTime.alchemicalWizardry.ModBlocks;
@@ -41,6 +43,16 @@ public class RitualEffectDemonPortal extends RitualEffect
         int x = ritualStone.getXCoord();
         int y = ritualStone.getYCoord();
         int z = ritualStone.getZCoord();
+
+        EntityPlayer entityOwner = SpellHelper.getPlayerForUsername(owner);
+        if (entityOwner == null){
+            return;
+        }
+
+        if (!SpellHelper.getWorldNameFromEntity(entityOwner).equalsIgnoreCase("Minerar")){
+            entityOwner.addChatComponentMessage(new ChatComponentText("§cVocê só pode usar esse ritual no /warp Minerar"));
+            return;
+        }
 
         if (currentEssence < this.getCostPerRefresh())
         {
