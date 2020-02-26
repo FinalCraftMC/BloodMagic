@@ -121,6 +121,9 @@ public class SigilBloodLight extends EnergyItems implements IHolding, ArmourUpgr
 
         if (!par2World.isRemote)
         {
+            if (ModHookEventHelper.cantBreak((EntityPlayer) par3EntityPlayer,par3EntityPlayer.posX,par3EntityPlayer.posY,par3EntityPlayer.posZ)){
+                return par1ItemStack;
+            }
             par2World.spawnEntityInWorld(new EntityBloodLightProjectile(par2World, par3EntityPlayer, 10));
         }
 

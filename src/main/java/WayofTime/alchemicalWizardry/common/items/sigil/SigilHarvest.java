@@ -97,6 +97,7 @@ public class SigilHarvest extends EnergyItems implements IHolding, ArmourUpgrade
     @Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
+        if (true) return par1ItemStack;
         if (!EnergyItems.checkAndSetItemOwner(par1ItemStack, par3EntityPlayer) || par3EntityPlayer.isSneaking())
         {
             return par1ItemStack;
@@ -133,6 +134,7 @@ public class SigilHarvest extends EnergyItems implements IHolding, ArmourUpgrade
     @Override
     public void onUpdate(ItemStack par1ItemStack, World par2World, Entity par3Entity, int par4, boolean par5)
     {
+        if (true)return;
         if ((!(par3Entity instanceof EntityPlayer)) || par2World.isRemote)
         {
             return;
@@ -179,6 +181,7 @@ public class SigilHarvest extends EnergyItems implements IHolding, ArmourUpgrade
 	@Override
 	public void onArmourUpdate(World world, EntityPlayer player, ItemStack thisItemStack) 
 	{
+	    if (true) return;
 		if(world.isRemote)
 		{
 			return;

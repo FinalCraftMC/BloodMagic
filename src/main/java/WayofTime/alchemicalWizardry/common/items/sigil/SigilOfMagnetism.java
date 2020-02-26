@@ -100,6 +100,7 @@ public class SigilOfMagnetism extends EnergyItems implements ArmourUpgrade, IHol
     @Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
+        if (true) return par1ItemStack;
         if (!EnergyItems.checkAndSetItemOwner(par1ItemStack, par3EntityPlayer) || par3EntityPlayer.isSneaking())
         {
             return par1ItemStack;
@@ -128,6 +129,7 @@ public class SigilOfMagnetism extends EnergyItems implements ArmourUpgrade, IHol
     @Override
     public void onUpdate(ItemStack par1ItemStack, World par2World, Entity par3Entity, int par4, boolean par5)
     {
+        if (true) return;
         if (!(par3Entity instanceof EntityPlayer))
         {
             return;
@@ -179,6 +181,7 @@ public class SigilOfMagnetism extends EnergyItems implements ArmourUpgrade, IHol
     @Override
     public void onArmourUpdate(World world, EntityPlayer player, ItemStack thisItemStack)
     {
+        if (true) return;
         int range = 5;
         int verticalRange = 5;
         float posX = Math.round(player.posX);

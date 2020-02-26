@@ -6,6 +6,7 @@ import WayofTime.alchemicalWizardry.api.items.interfaces.ArmourUpgrade;
 import WayofTime.alchemicalWizardry.api.items.interfaces.ISigil;
 import WayofTime.alchemicalWizardry.common.items.EnergyItems;
 import WayofTime.alchemicalWizardry.common.tileEntity.TESpectralBlock;
+import WayofTime.alchemicalWizardry.integration.ModHookEventHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -101,6 +102,7 @@ public class SigilOfTheBridge extends EnergyItems implements ArmourUpgrade, ISig
     @Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
+        if (true) return par1ItemStack;
         if (!EnergyItems.checkAndSetItemOwner(par1ItemStack, par3EntityPlayer) || par3EntityPlayer.isSneaking())
         {
             return par1ItemStack;
@@ -129,6 +131,7 @@ public class SigilOfTheBridge extends EnergyItems implements ArmourUpgrade, ISig
     @Override
     public void onUpdate(ItemStack par1ItemStack, World par2World, Entity par3Entity, int par4, boolean par5)
     {
+        if (true)return;
         if (!(par3Entity instanceof EntityPlayer))
         {
             return;
@@ -246,6 +249,7 @@ public class SigilOfTheBridge extends EnergyItems implements ArmourUpgrade, ISig
     @Override
     public void onArmourUpdate(World world, EntityPlayer player, ItemStack thisItemStack)
     {
+        if (true) return;
         if (!player.onGround && !player.isSneaking())
         {
             return;

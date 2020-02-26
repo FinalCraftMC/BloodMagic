@@ -1,8 +1,10 @@
 package WayofTime.alchemicalWizardry.common.entity.projectile;
 
 import WayofTime.alchemicalWizardry.ModBlocks;
+import WayofTime.alchemicalWizardry.integration.ModHookEventHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
@@ -59,6 +61,11 @@ public class EntityBloodLightProjectile extends EnergyBlastProjectile
             int blockX = mop.blockX;
             int blockY = mop.blockY;
             int blockZ = mop.blockZ;
+
+            if (this.shootingEntity != null && this.shootingEntity instanceof EntityPlayer && ModHookEventHelper.cantBreak((EntityPlayer) this.shootingEntity,blockX,blockY,blockZ)){
+                this.setDead();
+                return;
+            }
 
             if (sideHit == 0 && this.worldObj.isAirBlock(blockX, blockY - 1, blockZ))
             {

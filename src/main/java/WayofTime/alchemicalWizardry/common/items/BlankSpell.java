@@ -2,6 +2,7 @@ package WayofTime.alchemicalWizardry.common.items;
 
 import WayofTime.alchemicalWizardry.AlchemicalWizardry;
 import WayofTime.alchemicalWizardry.common.tileEntity.TEHomHeart;
+import WayofTime.alchemicalWizardry.integration.ModHookEventHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,6 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.List;
 
@@ -53,13 +55,17 @@ public class BlankSpell extends EnergyItems
     @Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
-        if (!EnergyItems.checkAndSetItemOwner(par1ItemStack, par3EntityPlayer) || par3EntityPlayer.isSneaking())
-        {
+        if (!EnergyItems.checkAndSetItemOwner(par1ItemStack, par3EntityPlayer) || par3EntityPlayer.isSneaking()){
             return par1ItemStack;
         }
 
         if (!par2World.isRemote)
         {
+
+            if (ModHookEventHelper.cantInteract(par3EntityPlayer, par1ItemStack, (int) par3EntityPlayer.posX, (int) par3EntityPlayer.motionY, (int) par3EntityPlayer.posZ, ForgeDirection.UP)){
+                return par1ItemStack;
+            }
+
             World world = DimensionManager.getWorld(getDimensionID(par1ItemStack));
 
             if (world != null)

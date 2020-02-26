@@ -104,6 +104,7 @@ public class SigilOfGrowth extends EnergyItems implements ArmourUpgrade, ISigil
     @Override
     public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
     {
+        if (true) return false;
         if (EnergyItems.checkAndSetItemOwner(par1ItemStack, par2EntityPlayer))
         {
             if (applyBonemeal(par1ItemStack, par3World, par4, par5, par6, par2EntityPlayer))
@@ -125,6 +126,8 @@ public class SigilOfGrowth extends EnergyItems implements ArmourUpgrade, ISigil
     @Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
+        if (true) return par1ItemStack;
+
         if (!EnergyItems.checkAndSetItemOwner(par1ItemStack, par3EntityPlayer) || par3EntityPlayer.isSneaking())
         {
             return par1ItemStack;
@@ -158,6 +161,8 @@ public class SigilOfGrowth extends EnergyItems implements ArmourUpgrade, ISigil
     @Override
     public void onUpdate(ItemStack par1ItemStack, World par2World, Entity par3Entity, int par4, boolean par5)
     {
+        if (true) return;
+
         if (!(par3Entity instanceof EntityPlayer) || par2World.isRemote)
         {
             return;
@@ -250,6 +255,7 @@ public class SigilOfGrowth extends EnergyItems implements ArmourUpgrade, ISigil
         {
             return;
         }
+        if (true) return;
 
         int range = 5;
         int verticalRange = 2;

@@ -5,8 +5,11 @@ import com.gamerforea.eventhelper.util.EventUtils;
 import cpw.mods.fml.common.Loader;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class ModHookEventHelper {
 
@@ -25,6 +28,13 @@ public class ModHookEventHelper {
 
    public static String getModID() {
       return "EventHelper";
+   }
+
+   public static boolean cantInteract(@Nonnull EntityPlayer player, @Nullable ItemStack stack, int x, int y, int z, @Nonnull ForgeDirection side) {
+      if (initialized){
+         return EventUtils.cantInteract(player,stack,x,y,z,side);
+      }
+      return false;
    }
 
    public static boolean cantBreak(@Nonnull EntityPlayer player, double x, double y, double z){
